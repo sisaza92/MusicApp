@@ -9,7 +9,6 @@ import udea.edu.co.musicapp.modelo.Contract;
 import udea.edu.co.musicapp.modelo.dao.CancionDao;
 import udea.edu.co.musicapp.modelo.dao.DbHelper;
 import udea.edu.co.musicapp.modelo.dto.Cancion;
-import udea.edu.co.musicapp.utils.ContextProvider;
 
 
 /**
@@ -21,7 +20,7 @@ public class CancionDaoImpl implements CancionDao {
         int size = canciones.size();
         Cancion cancion = null;
 
-        DbHelper dbHelper= new DbHelper(ContextProvider.getContext());//Instancia de DbHelper
+        DbHelper dbHelper= new DbHelper();//Instancia de DbHelper
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 

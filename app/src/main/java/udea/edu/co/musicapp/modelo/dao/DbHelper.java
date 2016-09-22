@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import udea.edu.co.musicapp.modelo.Contract;
+import udea.edu.co.musicapp.utils.ContextProvider;
 
 
 /**
@@ -15,8 +16,8 @@ public class DbHelper extends SQLiteOpenHelper{
 
     private static final String TAG=DbHelper.class.getSimpleName();
 
-    public DbHelper(Context contexto){
-        super(contexto,Contract.DB_NAME,null, Contract.DB_VERSION);
+    public DbHelper(){
+        super(ContextProvider.getContext(),Contract.DB_NAME,null, Contract.DB_VERSION);
 
         //
     }

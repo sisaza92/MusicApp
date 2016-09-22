@@ -74,9 +74,6 @@ public class CancionServiceImpl extends IntentService {
                 CancionDao cancionDao = new CancionDaoImpl();
                 cancionDao.guardar(canciones);
                 int size = canciones.size();
-                for (int i=0; i<size; i++){
-                    Log.d("INFO CANCION",canciones.get(i).toString()+"\n");
-                }
                 Toast.makeText(CancionServiceImpl.this, "Canciones Recibidas Exitosamente", Toast.LENGTH_LONG).show();
                 sendBroadcast(new Intent("udea.edu.co.musicapp.NUEVA_LISTA"));
             }

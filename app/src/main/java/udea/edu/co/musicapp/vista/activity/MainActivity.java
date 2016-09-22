@@ -20,7 +20,9 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 
 import udea.edu.co.musicapp.R;
+import udea.edu.co.musicapp.modelo.dao.CancionDao;
 import udea.edu.co.musicapp.modelo.dao.DbHelper;
+import udea.edu.co.musicapp.modelo.dao.impl.CancionDaoImpl;
 import udea.edu.co.musicapp.service.CancionServiceImpl;
 import udea.edu.co.musicapp.service.CancionServiceInterface;
 import udea.edu.co.musicapp.utils.ContextProvider;
@@ -147,6 +149,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d("TimelineReceiver", "onReceived");
+            CancionDao cancionDao = new CancionDaoImpl();
 
             Log.d("BROADCAST RECIBIDO", "onReceived");
 
