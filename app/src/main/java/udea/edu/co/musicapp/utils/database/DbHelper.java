@@ -1,11 +1,9 @@
-package udea.edu.co.musicapp.modelo.dao;
+package udea.edu.co.musicapp.utils.database;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import udea.edu.co.musicapp.modelo.Contract;
 import udea.edu.co.musicapp.utils.ContextProvider;
 
 

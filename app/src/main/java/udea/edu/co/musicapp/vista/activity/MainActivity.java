@@ -17,15 +17,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
+
+import java.util.List;
 
 import udea.edu.co.musicapp.R;
-import udea.edu.co.musicapp.modelo.dao.CancionDao;
-import udea.edu.co.musicapp.modelo.dao.DbHelper;
+import udea.edu.co.musicapp.modelo.dao.CancionDaoInterface;
 import udea.edu.co.musicapp.modelo.dao.impl.CancionDaoImpl;
+import udea.edu.co.musicapp.modelo.dto.Cancion;
 import udea.edu.co.musicapp.service.CancionServiceImpl;
-import udea.edu.co.musicapp.service.CancionServiceInterface;
-import udea.edu.co.musicapp.utils.ContextProvider;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -149,9 +148,12 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d("TimelineReceiver", "onReceived");
-            CancionDao cancionDao = new CancionDaoImpl();
+            CancionDaoInterface cancionDaoInterface = new CancionDaoImpl();
+            List<Cancion> canciones = cancionDaoInterface.getAllSongs();
+            for (int i=0;i<canciones.size();i++){
+                Log.d("LISTANDO",canciones.get(i).toString());
+            }
 
-            Log.d("BROADCAST RECIBIDO", "onReceived");
 
         }
     }

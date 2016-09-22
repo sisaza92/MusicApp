@@ -10,7 +10,7 @@ import retrofit.RestAdapter;
 public class ServiceFactory {
 
         private static CancionServiceInterface CLIENTE_REST;
-        private static String URL_ROOT = "http://192.168.2.102:8084/";
+        private static String URL_ROOT = "http://192.168.43.194:8084/";
 
         static {
             setupRestClient();
