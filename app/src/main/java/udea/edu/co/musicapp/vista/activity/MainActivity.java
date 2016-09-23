@@ -1,5 +1,6 @@
 package udea.edu.co.musicapp.vista.activity;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,12 +19,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import udea.edu.co.musicapp.R;
+import udea.edu.co.musicapp.modelo.dao.CancionDao;
 import udea.edu.co.musicapp.modelo.dao.DbHelper;
+import udea.edu.co.musicapp.modelo.dao.impl.CancionDaoImpl;
+import udea.edu.co.musicapp.modelo.dto.Cancion;
 import udea.edu.co.musicapp.service.CancionServiceImpl;
 import udea.edu.co.musicapp.service.CancionServiceInterface;
 import udea.edu.co.musicapp.utils.ContextProvider;
+import udea.edu.co.musicapp.vista.adapter.CancionListAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,12 +39,15 @@ public class MainActivity extends AppCompatActivity
 
     private IntentFilter filtro;
     private BroadcastReceiver receptor;
+    ListView listaCanciones;
+    CancionDao cancionDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("REGISTRO -->"," Clase: MainActivity Metodo: onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listaCanciones = (ListView)findViewById(R.id.listview_canciones);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         filtro = new IntentFilter("udea.edu.co.musicapp.NUEVA_LISTA");
@@ -57,6 +68,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -89,7 +101,7 @@ public class MainActivity extends AppCompatActivity
                 a.putExtra("show", true);
                 startService(a);
 
-
+                sendBroadcast(new Intent("udea.edu.co.musicapp.NUEVA_LISTA"));
 
                 return true;
         }
@@ -147,7 +159,18 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d("TimelineReceiver", "onReceived");
+            //cancionDao = new CancionDaoImpl();
+            ArrayList<Cancion> canciones = new ArrayList<>();
+            for (int i=1;i<14;i++){
+                Cancion cancion = new Cancion();
+                cancion.setAlbum(i+" Afuera del Mundo");
+                cancion.setArtista(i+" ZOE");
+                cancion.setTituloCancion(i+" Sognare contigo");
+                cancion.setIdCancion(i);
 
+                canciones.add(cancion);
+            }
+            listaCanciones.setAdapter(new CancionListAdapter((Activity) context,canciones));
             Log.d("BROADCAST RECIBIDO", "onReceived");
 
         }

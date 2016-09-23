@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width = "match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_margin = "10dp"
+    android:background = "#0088BB"
+    android:orientation = "vertical"
+    android:padding = "5dp" >
+
+    <!--TextView
+        android:id = "@+id/nameTextView"
+        android:layout_width = "fill_parent"
+        android:layout_height = "wrap_content"
+        android:textColor = "#FFFFFF" /-->
+
+    <ImageView android:id="@+id/album_icon"
+        android:layout_width="?android:attr/listPreferredItemHeight"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:contentDescription="Foto miniatura del Album"
+        android:src="@drawable/album_icon2"/>
+
+    <TextView android:id="@+id/cancion_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Titulo de La Cancion"
+        android:layout_toRightOf="@id/album_icon"
+        android:layout_alignParentTop="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:singleLine="true"
+        android:textColor = "#FFFFFF" />
+    <TextView
+        android:id="@+id/cancion_artista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Artista"
+        android:layout_below="@id/cancion_titulo"
+        android:layout_toRightOf="@+id/album_icon"
+        android:singleLine="true"
+        android:textColor = "#FFFFFF" />
+    <TextView
+        android:id="@+id/cancion_album"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Album"
+        android:layout_below="@id/cancion_artista"
+        android:layout_toRightOf="@+id/album_icon"
+        android:singleLine="true"
+        android:textColor = "#FFFFFF" />
+
+    <RatingBar
+        android:id="@+id/puntuacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/cancion_album"
+        android:layout_toRightOf="@+id/album_icon"
+        android:layout_toEndOf="@id/album_icon"
+        style="?android:attr/ratingBarStyleSmall"
+        android:rating="3"/>
+</RelativeLayout>

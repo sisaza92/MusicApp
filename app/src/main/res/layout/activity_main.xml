@@ -8,6 +8,13 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+    <ListView
+        android:id="@+id/listview_canciones"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/drawer_layout"
+        android:drawSelectorOnTop="false" />
+
     <include
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"

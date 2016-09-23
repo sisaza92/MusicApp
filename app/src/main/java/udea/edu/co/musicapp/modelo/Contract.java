@@ -7,7 +7,7 @@ public class Contract {
         // DB specific constants
         public static final  String DB_NAME = "musicapp.db";
         public static final int DB_VERSION = 1;
-        public static final String CANCION = "cancion";
+        public static final String CANCION = "layout/cancion";
 
 
         public class Column {
