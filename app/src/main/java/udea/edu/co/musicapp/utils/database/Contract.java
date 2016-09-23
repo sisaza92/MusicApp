@@ -1,4 +1,4 @@
-package udea.edu.co.musicapp.modelo;
+package udea.edu.co.musicapp.utils.database;
 
 /**
  * Created by alejandro.isazad on 20/09/16.

@@ -14,7 +14,7 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import udea.edu.co.musicapp.modelo.dao.CancionDao;
+import udea.edu.co.musicapp.modelo.dao.CancionDaoInterface;
 import udea.edu.co.musicapp.modelo.dao.impl.CancionDaoImpl;
 import udea.edu.co.musicapp.modelo.dto.Cancion;
 
@@ -71,14 +71,14 @@ public class CancionServiceImpl extends IntentService {
         ServiceFactory.getClienteRest().getAllSongs(new Callback<List<Cancion>>() {
             @Override
             public void success(List<Cancion> canciones, Response response) {
-                CancionDao cancionDao = new CancionDaoImpl();
-                cancionDao.guardar(canciones);
+                CancionDaoInterface cancionDaoInterface = new CancionDaoImpl();
+                cancionDaoInterface.guardar(canciones);
                 int size = canciones.size();
-                for (int i=0; i<size; i++){
-                    Log.d("INFO CANCION",canciones.get(i).toString()+"\n");
-                }
                 Toast.makeText(CancionServiceImpl.this, "Canciones Recibidas Exitosamente", Toast.LENGTH_LONG).show();
-                sendBroadcast(new Intent("udea.edu.co.musicapp.NUEVA_LISTA"));
+                Intent intent=new Intent("udea.edu.co.musicapp.NUEVA_LISTA");
+                //intent.putExtra("lista",canciones);
+                sendBroadcast(intent);
+
             }
 
             @Override

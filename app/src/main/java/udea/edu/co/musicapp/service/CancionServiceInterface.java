@@ -12,10 +12,10 @@ import udea.edu.co.musicapp.modelo.dto.Cancion;
  */
 public interface CancionServiceInterface {
 
-    @GET("/MusicAppService/Canciones/{idCancion}")
+    @GET("/MusicAppService/Canciones/getSongById/{idCancion}")
     void getSongByID(@Path("idCancion") int idCancion, Callback<Cancion> callback);
 
-    @GET("/MusicAppService/Canciones/listar")
+    @GET("/MusicAppService/Canciones/getAllSongs")
     void getAllSongs(Callback<List<Cancion>> callback);
 
 
