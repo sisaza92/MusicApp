@@ -1,5 +1,6 @@
 package udea.edu.co.musicapp.vista.activity;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +18,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import udea.edu.co.musicapp.R;
@@ -25,6 +28,7 @@ import udea.edu.co.musicapp.modelo.dao.CancionDaoInterface;
 import udea.edu.co.musicapp.modelo.dao.impl.CancionDaoImpl;
 import udea.edu.co.musicapp.modelo.dto.Cancion;
 import udea.edu.co.musicapp.service.CancionServiceImpl;
+import udea.edu.co.musicapp.vista.adapter.CancionListAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,11 +37,15 @@ public class MainActivity extends AppCompatActivity
     private IntentFilter filtro;
     private BroadcastReceiver receptor;
 
+    ListView listaCanciones;
+    CancionDaoInterface cancionDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("REGISTRO -->"," Clase: MainActivity Metodo: onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listaCanciones = (ListView)findViewById(R.id.listview_canciones);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         filtro = new IntentFilter("udea.edu.co.musicapp.NUEVA_LISTA");
@@ -150,11 +158,8 @@ public class MainActivity extends AppCompatActivity
             Log.d("TimelineReceiver", "onReceived");
             CancionDaoInterface cancionDaoInterface = new CancionDaoImpl();
             List<Cancion> canciones = cancionDaoInterface.getAllSongs();
-            for (int i=0;i<canciones.size();i++){
-                Log.d("LISTANDO",canciones.get(i).toString());
-            }
-
-
+            Log.d("BROADCAST RECIBIDO", "onReceived");
+            listaCanciones.setAdapter(new CancionListAdapter((Activity) context, (ArrayList<Cancion>)canciones));
         }
     }
 }
